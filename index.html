@@ -13,7 +13,16 @@
   </head>
   <body>
     <div class="wrapper">
+      <header class="header-mobile">
+        <h1 class="logo"><strong>Carrito</strong></h1>
+        <button class="open-menu" id="open-menu">
+          <i class="bi bi-three-dots"></i>
+        </button>
+      </header>
       <aside>
+        <button class="close-menu" id="close-menu">
+          <i class="bi bi-x"></i>
+        </button>
         <header>
           <h1 class="logo"><strong>Carrito</strong></h1>
         </header>
@@ -64,12 +73,13 @@
         <h2 class="titulo-principal" id="titulo-principal">
           Todos los productos
         </h2>
-        <div id="contenedor-productos" class="contenedor-producto">
+        <div id="contenedor-productos" class="contenedor-productos">
           <!--Esto se rellana con el index.js-->
         </div>
       </main>
     </div>
 
     <script src="./js/index.js"></script>
+    <script src="./js/menu.js"></script>
   </body>
 </html>
