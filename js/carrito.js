@@ -81,12 +81,42 @@ function eliminarDelCarrito(e) {
 botonVaciar.addEventListener("click", vaciarCarrito);
 
 function vaciarCarrito() {
-  productosEnCarrito.length = 0;
-  localStorage.setItem(
-    "productos-en-carrito",
-    JSON.stringify(productosEnCarrito)
-  );
-  cargarProductosCarrito();
+  Swal.fire({
+    title: "¿Estás seguro?",
+    html: `Se van a borrar ${productosEnCarrito.reduce(
+      (acc, producto) => acc + producto.cantidad,
+      0
+    )} productos!`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, borrar todo",
+    cancelButtonText: "No eliminar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      productosEnCarrito.length = 0;
+      localStorage.setItem(
+        "productos-en-carrito",
+        JSON.stringify(productosEnCarrito)
+      );
+      cargarProductosCarrito();
+      swalWithBootstrapButtons.fire(
+        "Deleted!",
+        "Your file has been deleted.",
+        "success"
+      );
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        "error"
+      );
+    }
+  });
 }
 
 function actualizarTotal() {
